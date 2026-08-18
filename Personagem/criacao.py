@@ -1,3 +1,23 @@
+class Personagem:
+    def __init__(self, nome, classe, vida, ataque):
+        self.nome = nome
+        self.classe = classe
+        self.vida = vida
+        self.ataque = ataque
+
+
+    def atacar(self, vilao):
+        vilao.vida -= self.ataque
+
+        print(f'{self.nome} atacou o {vilao.nome}')
+        print(f'{self.nome} deu {self.ataque} de dano')
+
+        if vilao.vida <= 0:
+            vilao.vida = 0
+        else:
+            print(f'Agora o {vilao.nome} está com HP: {vilao.vida}')
+
+
 def criar_personagem():
     print('-'*15, 'Criação de Personagem', '-'*15)
 
@@ -45,10 +65,5 @@ def criar_personagem():
         vida = 130
         ataque = 65
 
-    personagem = {'Nome': nome,
-                  'Classe': classe,
-                  'vida': vida,
-                  'ataque': ataque
-                  }
-
+    personagem = Personagem(nome, classe, vida, ataque)
     return personagem

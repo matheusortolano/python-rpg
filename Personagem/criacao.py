@@ -1,22 +1,52 @@
-class Personagem:
+from abc import ABC, abstractmethod
+
+class Personagem(ABC):
     def __init__(self, nome, classe, vida, ataque):
         self.nome = nome
         self.classe = classe
-        self.vida = vida
+        self._vida = vida
         self.ataque = ataque
 
+    @property
+    def vida(self):
+        return self._vida
+
+    @vida.setter
+    def vida(self, valor):
+        if valor < 0:
+            self._vida = 0
+        else:
+            self._vida = valor
+        
+    def receber_dano(self, dano):
+        self.vida -= dano
+
+    @abstractmethod
+    def atacar(self,vilao):
+        pass
+
+
+class Guerreiro(Personagem):
+    def __init__(self, nome):
+        super().__init__(nome,'Guerreiro', 180, 55)
 
     def atacar(self, vilao):
-        vilao.vida -= self.ataque
+        vilao.receber_dano(self.ataque)
+        print(f"o {self.nome} atacou com Giro de Machado")
 
-        print(f'{self.nome} atacou o {vilao.nome}')
-        print(f'{self.nome} deu {self.ataque} de dano')
+class Mago(Personagem):
+    def __init__(self, nome):
+        super().__init__(nome,'Mago', 100, 90)
+    def atacar(self, vilao):
+        vilao.receber_dano(self.ataque)
+        print(f"o {self.nome} atacou com Bola de fogo")
 
-        if vilao.vida <= 0:
-            vilao.vida = 0
-        else:
-            print(f'Agora o {vilao.nome} está com HP: {vilao.vida}')
-
+class Arqueiro(Personagem):
+    def __init__(self, nome):
+        super().__init__(nome,'Arqueiro', 130, 65)
+    def atacar(self, vilao):
+        vilao.receber_dano(self.ataque)
+        print(f"o {self.nome} atacou com Chuva de flechas")
 
 def criar_personagem():
     print('-'*15, 'Criação de Personagem', '-'*15)
@@ -56,14 +86,10 @@ def criar_personagem():
     vida = ataque = 0
 
     if classe == 'Guerreiro':
-        vida = 180
-        ataque = 55
+        personagem = Guerreiro(nome)
     elif classe == 'Mago':
-        vida = 100
-        ataque = 90
+        personagem = Mago(nome)
     elif classe == 'Arqueiro':
-        vida = 130
-        ataque = 65
+        personagem = Arqueiro(nome)
 
-    personagem = Personagem(nome, classe, vida, ataque)
     return personagem

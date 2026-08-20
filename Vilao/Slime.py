@@ -1,18 +1,29 @@
 class Inimigo:
     def __init__(self, nome, vida, ataque):
         self.nome = nome
-        self.vida = vida
+        self._vida = vida
         self.ataque = ataque
 
+    @property
+    def vida(self):
+        return self._vida
+
+    @vida.setter
+    def vida(self, valor):
+        if valor < 0:
+            self._vida = 0
+        else:
+            self._vida = valor
+
+    def receber_dano(self, dano):
+        self.vida -= dano
+
     def atacar(self, heroi):
-        heroi.vida -= self.ataque
+        heroi.receber_dano(self.ataque)
 
         print(f'{self.nome} atacou {heroi.nome}')
         print (f'{self.nome} deu {self.ataque} de dano')
-        if  heroi.vida <= 0:
-            heroi.vida = 0
-        else:
-            print(f'O Herói {heroi.nome} está com HP {heroi.vida}')
+        print(f'O Herói {heroi.nome} está com HP {heroi.vida}')
 
 def criar_inimigo():
     print('-'*20)

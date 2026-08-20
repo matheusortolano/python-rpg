@@ -1,30 +1,44 @@
 # ⚔️ Python RPG
 
-RPG em terminal desenvolvido durante meus estudos de Python e lógica de programação.
+Projeto simples de RPG em terminal desenvolvido em Python com foco em prática de lógica de programação e Programação Orientada a Objetos.
 
-## 🎮 Sobre o projeto
+## 🎮 Funcionalidades
 
-O jogador pode criar um personagem, escolher uma classe e enfrentar inimigos em batalhas por turnos.
+- Criação de personagem
+- Escolha entre Guerreiro, Mago e Arqueiro
+- Sistema de batalha
+- Visualização de status
+- Tentativa de fuga com chance aleatória
+- Sistema de vitória e derrota
+- Tratamento de entradas inválidas
 
 ## Conceitos praticados
 
+- Variáveis e estruturas condicionais
+- Laços de repetição
 - Funções
-- Condicionais (`if`, `elif`, `else`)
-- Laços de repetição (`while`)
-- Dicionários
-- Tratamento de erros com `try/except`
-- Números aleatórios com `randint`
-- Git e GitHub
+- Tratamento de exceções com try/except
+- Random
+- Classes e objetos
+- Herança
+- Abstração
+- Encapsulamento
+- Polimorfismo
+- Sobrescrita de métodos
+- Uso de `super()`
+- Properties e setters
+- Organização do projeto em módulos
 
-## Funcionalidades
+## Estrutura de personagens
 
-- Criação de personagem
-- Escolha de classe
-- Sistema de batalha
-- Visualização de status
-- Sistema de fuga
-- Chance aleatória de fuga
+- `Personagem` → classe abstrata
+- `Guerreiro`
+- `Mago`
+- `Arqueiro`
+- `Inimigo`
 
-## Projeto em desenvolvimento
+Cada classe de personagem possui atributos próprios e implementa seu próprio método de ataque.
 
-Este projeto continuará recebendo pequenas melhorias conforme avanço nos estudos de Python.
+## Objetivo
+
+Este projeto foi criado como exercício de aprendizado e foi sendo refatorado conforme novos conceitos de Python e POO foram estudados.
